@@ -25,24 +25,35 @@ const textMap = {
     register: 'register'
 };
 
-const AuthFrom = ({ type }) => {
+const AuthFrom = ({ type, form, onChange, onSubmit }) => {
     const text = textMap[type];
     return (
         <AuthFromBlock>
             <h1>{text}</h1>
-            <from>
-                <StyledInput autoComplate="username" name="username" placeholder="아이디" />
+            <from onSubmit={onSubmit}>
+                <StyledInput 
+                    autoComplate="username"
+                    name="username"
+                    placeholder="아이디"
+                    onChange={onChange}
+                    value={form.username}
+                />
                 <StyledInput
                     autoComplate="new-password"
                     name="password"
                     placeholder="비밀번호"
-                    type="password" />
+                    type="password" 
+                    onChange={onChange}
+                    value={form.password}
+                />
                 {type === 'register' && (
                     <StyledInput
                         autoComplate="new-password"
                         name="passwordConfirm"
                         placeholder="비밀번호 확인"
                         type="password"
+                        onChange={onChange}
+                        value={form.passwordConfirm}
                     />
                 )}
                 <Button>{text}</Button>

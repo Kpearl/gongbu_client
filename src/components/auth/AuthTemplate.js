@@ -9,7 +9,7 @@ const AuthTemplate = ({children}) => {
     return (
         <AuthTemplateBlock>
             <div className="logo-area">
-                <Link to="/">REACTERS</Link>
+                <Link to="/">HOME</Link>
             </div>
             {children}
         </AuthTemplateBlock>
