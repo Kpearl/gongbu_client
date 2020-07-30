@@ -8,11 +8,14 @@ const RegisterForm = () => {
     const { form, auth, authError } = useSelector(({ auth }) => ({
         form: auth.register,
         auth: auth.auth,
-        authError: auth.authError
+        authError: auth.authError,
+        id: auth.id,
+        birth: auth.birth,
+        phone: auth.phone,
     }));
 
     const onChange = e => {
-        (...)
+        
     };
 
     const onSubmit = e =>{

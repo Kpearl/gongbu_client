@@ -20,23 +20,61 @@ const StyledInput = styled.input`
 
 const Footer = styled.div``;
 
+const ButtonWithMarginTop = styled(Button)`
+    margin-top: 1rem;
+`;
+
 const textMap = {
     login: 'login',
     register: 'register'
 };
 
-const AuthFrom = ({ type, form, onChange, onSubmit }) => {
+const ErrorMessage = styled.div`
+    color: red;
+    text-align: center;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+`;
+
+const AuthFrom = ({ type, form, onChange, onSubmit, error }) => {
     const text = textMap[type];
     return (
         <AuthFromBlock>
             <h1>{text}</h1>
             <from onSubmit={onSubmit}>
+                {type === 'register' && (
+                    <StyledInput 
+                        autoComplate="username"
+                        name="username"
+                        placeholder="이름"
+                        onChange={onChange}
+                        value={form.username || ''}
+                    />
+                )}
+                {type === 'register' && (
+                    <StyledInput 
+                        autoComplate="phone"
+                        name="phone"
+                        placeholder="전화번호"
+                        onChange={onChange}
+                        value={form.phone || ''}
+                    />
+                )}
+                {type === 'register' && (
+                    <StyledInput 
+                        autoComplate="birth"
+                        name="birth"
+                        placeholder="생년월일"
+                        onChange={onChange}
+                        value={form.birth || ''}
+                    />
+                )}
                 <StyledInput 
-                    autoComplate="username"
-                    name="username"
+                    autoComplate="id"
+                    name="id"
                     placeholder="아이디"
                     onChange={onChange}
-                    value={form.username}
+                    value={form.id || ''}
                 />
                 <StyledInput
                     autoComplate="new-password"
@@ -44,7 +82,7 @@ const AuthFrom = ({ type, form, onChange, onSubmit }) => {
                     placeholder="비밀번호"
                     type="password" 
                     onChange={onChange}
-                    value={form.password}
+                    value={form.password || ''}
                 />
                 {type === 'register' && (
                     <StyledInput
@@ -53,10 +91,11 @@ const AuthFrom = ({ type, form, onChange, onSubmit }) => {
                         placeholder="비밀번호 확인"
                         type="password"
                         onChange={onChange}
-                        value={form.passwordConfirm}
+                        value={form.passwordConfirm || ''}
                     />
                 )}
-                <Button>{text}</Button>
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+                <ButtonWithMarginTop>{text}</ButtonWithMarginTop>
             </from>
             <Footer>
                 {type === 'login' ? (
