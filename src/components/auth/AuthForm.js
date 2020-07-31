@@ -41,7 +41,7 @@ const AuthFrom = ({ type, form, onChange, onSubmit, error }) => {
     return (
         <AuthFromBlock>
             <h1>{text}</h1>
-            <from onSubmit={onSubmit}>
+            <form onSubmit={onSubmit}>
                 {type === 'register' && (
                     <StyledInput 
                         autoComplate="username"
@@ -96,7 +96,7 @@ const AuthFrom = ({ type, form, onChange, onSubmit, error }) => {
                 )}
                 {error && <ErrorMessage>{error}</ErrorMessage>}
                 <ButtonWithMarginTop>{text}</ButtonWithMarginTop>
-            </from>
+            </form>
             <Footer>
                 {type === 'login' ? (
                     <Link to="/register">회원가입</Link>

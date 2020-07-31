@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { changeField, initializeForm, login } from '../../modules/auth';
 import AuthForm from '../../components/auth/AuthForm';
 import { check } from '../../modules/user';
+import { isConditionalExpression } from 'typescript';
 
 const LoginForm = ({ history }) => {
     const [error, setError] = useState(null);
@@ -27,9 +28,8 @@ const LoginForm = ({ history }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        const { username, password } = form;
-        console.log("login test" + username);
-        dispatch(login({ username, password }));
+        const { id, password } = form;
+        dispatch(login({ id, password }));
     };
 
     useEffect(() => {
@@ -38,7 +38,6 @@ const LoginForm = ({ history }) => {
 
     useEffect(() => {
         if (authError) {
-            console.log('오류발생');
             console.log(authError);
             setError('로그인 실패');
             return;

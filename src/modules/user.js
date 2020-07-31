@@ -30,9 +30,9 @@ export default handleActions(
             ...state,
             user,
         }),
-        [CHECK_SUCCESS]: (state, {payload:error}) => ({
+        [CHECK_SUCCESS]: (state, {payload: user}) => ({
             ...state,
-            user: null,
+            user,
             checkError: null,
         }),
         [CHECK_FAILURE]: (state, { payload: error}) => ({

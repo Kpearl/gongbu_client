@@ -24,15 +24,18 @@ export const changeField = createAction(
     );
 
     export const initializeForm = createAction(INITIALIZE_FORM, form => form);
-    export const register = createAction(REGISTER, ({username, password}) => ({
-        username, password
+
+    export const register = createAction(REGISTER, ({id, password, username, phone, birth}) => ({
+        id, password, username, phone, birth
     }));
-    export const login = createAction(REGISTER, ({username, password}) => ({
-        username, password
+
+    export const login = createAction(LOGIN, ({id, password}) => ({
+        id, password
     }));
 
     const registerSaga = createRequestSaga(REGISTER, authAPI.register);
     const loginSaga = createRequestSaga(LOGIN, authAPI.login);
+    
     export function* authSaga() {
         yield takeLatest(REGISTER, registerSaga);
         yield takeLatest(LOGIN, loginSaga);
@@ -40,12 +43,15 @@ export const changeField = createAction(
 
 const initialState = {
     register: {
-        username: '',
+        id: '',
         password: '',
         passwordConfirm: '',
+        username: '',
+        phone: '',
+        birth: '',
     },
     login: {
-        username: '',
+        id: '',
         password: ''
     },
     auth: null,
