@@ -4,18 +4,18 @@ import client from './cilent';
 export const login = ({ id, password }) => {
     client.post('/users/login', null, { params:{id: id, pw: password }})
         .then(
-            function (response) {
+            (response) => {
                 console.log(response);
             }).catch(error => {
                 console.log('error : ', error.response)
-            });
+            })
 }
 
 //회원가입
 export const register = ({ id, password, username, phone, birth }) => {
     client.post('/users/register', null, { params: { id, password, username, phone, birth }})
         .then(
-            function (response) {
+            (response) => {
                 console.log(response);
             }).catch(error => {
                 console.log('error : ', error.response)

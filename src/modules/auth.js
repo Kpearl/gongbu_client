@@ -4,10 +4,10 @@ import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga, {
     createRequestActionTypes,
 } from '../lib/createRequestSaga';
-import * as authAPI from '../lib/api/auth';
+import * as authAPI from '../lib/api/auth'; 
 
-const CHANGE_FILED = 'auth/CHANGE_FIELD';
-const INITIALIZE_FORM = 'auth/INITIALIZE_FROM';
+const CHANGE_FILED = 'CHANGE_FIELD';
+const INITIALIZE_FORM = 'INITIALIZE_FROM';
 
 const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] = createRequestActionTypes(
     'auth/REGISTER',
@@ -67,6 +67,7 @@ const auth = handleActions(
         [INITIALIZE_FORM]: (state, { payload: form }) => ({
             ...state,
             [form]: initialState[form],
+            authError: null,
         }),
         [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
             ...state,
