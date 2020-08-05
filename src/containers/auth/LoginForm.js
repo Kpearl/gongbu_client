@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { changeField, initializeForm, login } from '../../modules/auth';
 import AuthForm from '../../components/auth/AuthForm';
 import { check } from '../../modules/user';
-import { isConditionalExpression } from 'typescript';
 
 const LoginForm = ({ history }) => {
     const [error, setError] = useState(null);
