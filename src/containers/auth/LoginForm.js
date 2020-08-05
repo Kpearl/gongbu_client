@@ -49,7 +49,6 @@ const LoginForm = ({ history }) => {
     }, [auth, authError, dispatch]);
 
     useEffect(() => {
-        
         if (user) {
             history.push('/');
         }

@@ -7,7 +7,7 @@ export const login = ({ id, password }) =>
 
 //회원가입
 export const register = ({ id, password, username, phone, birth }) => 
-    client.post('/users/register', null, { params: { id, password, username, phone, birth }})
+    client.post('/users/register', null, { params: { id: id, pw: password, name: username, phone: phone, birth: birth }})
 
 //로그인 상태 확인
 export const check = () => client.get('/users/check');

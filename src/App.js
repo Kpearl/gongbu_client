@@ -10,11 +10,11 @@ import './App.css';
 const App = () => {
   return (
     <>
-    <Route component={HomePage} path={['/@:username','/']} exact />
+    <Route component={HomePage} path={['/@:id','/']} exact />
     <Route component={LoginPage} path="/login"/>
     <Route component={RegisterPage} path="/register"/>
     <Route component={WritePage} path="/write"/>
-    <Route component={PostPage} path="/@:username/:postId"/>
+    <Route component={PostPage} path="/@:id/:postId"/>
     </>
   );
 };
