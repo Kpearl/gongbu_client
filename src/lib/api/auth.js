@@ -11,3 +11,6 @@ export const register = ({ id, password, username, phone, birth }) =>
 
 //로그인 상태 확인
 export const check = () => client.get('/users/check');
+
+//로그아웃
+export const logout = () => client.post('/users/logout');

@@ -47,9 +47,6 @@ const RegisterForm = ({ history }) => {
 
     useEffect(() => {
         if (authError) {
-            if(authError.response.status === 400) {
-                setError('이미 존재하는 계정명입니다.');
-            }
             setError('회원가입 실패');
             return;
         }
@@ -57,12 +54,20 @@ const RegisterForm = ({ history }) => {
             console.log('회원가입 성공');
             console.log(auth);
             dispatch(check());
+        } else if (auth === false) {
+            setError('이미 존재하는 계정명입니다.');
+            return;
         }
     }, [auth, authError, dispatch]);
 
     useEffect(() => {
         if (user) {
             history.push('/');
+            try {
+                localStorage.setItem('user', JSON.stringify(user));
+            } catch(e) {
+                console.log('localsStorage is not working');
+            }
         }
     }, [history, user]);
 

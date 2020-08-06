@@ -28,6 +28,10 @@ const LoginForm = ({ history }) => {
     const onSubmit = e => {
         e.preventDefault();
         const { id, password } = form;
+        if([ id, password].includes('')) {
+            setError('빈 칸을 모두 입력하세요.');
+            return;
+        }
         dispatch(login({ id, password }));
     };
 
@@ -51,6 +55,11 @@ const LoginForm = ({ history }) => {
     useEffect(() => {
         if (user) {
             history.push('/');
+            try {
+                localStorage.setItem('user', JSON.stringify(user));
+            } catch(e) {
+                console.log('localStorage is not working');
+            }
         }
     }, [history, user]);
 

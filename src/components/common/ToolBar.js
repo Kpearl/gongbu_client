@@ -1,78 +1,69 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from './Button';
 import palette from '../../lib/styles/palette';
+import Responsive from './Responsive';
+import { Link } from 'react-router-dom';
 
-const StyledToolBar = styled.button`
-body{	
-	font-family: 'Noto Sans KR', sans-serif;
-	margin: 0;
-	text-align: center;
-	font-size: 15px;
-}
-
-.nav-container {
-	display: flex;
-	width:100%;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	background-color: lightslategray;
-}
-
-.nav-item {
+const ToolBarBlack = styled.div`
+	position: fixed;
 	font-weight: bold;
 	font-family: 'Beth Ellen', sans-serif;
-	padding: 15px;
-	cursor: pointer;
-	width: 50%;
+	width: 100%;
+	font-size: 30px;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+	background: white;
+`;
+
+const Wrapper = styled(Responsive)`
+	height: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	.logo {
+		text-decoration: none;
+		font-size:1.125rem;
+		font-weight: 800;
+		letter-spacing: 2px;
+	}
+
+	.right {
+		display: flex;
+		align-items: center;
+	}
+`;
+
+const Spacer = styled.div`
+	height: 4rem;
+`;
+
+const UserInfo = styled.div`
+	font-weight: 800;
+	margin-right: 1rem;
+`;
+
+const ToolBar = ({ user, onLogout }) => {
+	return (
+		<>
+			<ToolBarBlack>
+				<Wrapper>
+					<Button to="/setting">환경설정</Button>
+					<Link to="/" className="logo">Gongbu</Link>
+					{user ? (
+						<div className="right">
+							<UserInfo>{user.id}</UserInfo>
+							<Button onClick={onLogout}>로그아웃</Button>
+						</div>
+					) : (
+							<div className="right">
+								<Button to="/login">로그인</Button>
+							</div>
+						)}
+				</Wrapper>
+			</ToolBarBlack>
+			<Spacer />
+		</>
+	)
 }
-
-.nav-container li a {
-	display: block;
-}
-
-.nav-container ul {
-	list-style: none;
-	position: absolute;
-	background: #90b5da;
-	text-align: center;
-	opacity: 0;
-	padding: 15px;
-	margin: 0;
-	left: 0;
-}
-
-.nav-container li:hover ul {
-	opacity: 1;
-}
-
-.nav-left {
-	text-align: left;
-}
-
-.nav-center {
-	text-align: center;
-}
-
-.nav-right {
-	text-align: right;
-}
-
-.nav-right::before, .nav-right::after {
-	font-size: 50px;
-}
-
-.nav-right::before {
-	transform: rotate(-90deg);
-}
-
-.nav-right:hover { cursor: pointer; }
-
-.nav-item a {
-	text-decoration: none;
-	color: white;
-}`;
-
-const ToolBar = props => <StyledToolBar{...props} />;
 
 export default ToolBar;

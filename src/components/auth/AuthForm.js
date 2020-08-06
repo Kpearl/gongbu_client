@@ -41,9 +41,14 @@ const AuthFrom = ({ type, form, onChange, onSubmit, error }) => {
     return (
         <AuthFromBlock>
             <h1>{text}</h1>
+            {type === 'login' ? (
+                <Button to="/register">회원가입</Button>
+            ) : (
+                    <Button to="/login">로그인</Button>
+                )}
             <form onSubmit={onSubmit}>
                 {type === 'register' && (
-                    <StyledInput 
+                    <StyledInput
                         autoComplate="username"
                         name="username"
                         placeholder="이름"
@@ -52,7 +57,7 @@ const AuthFrom = ({ type, form, onChange, onSubmit, error }) => {
                     />
                 )}
                 {type === 'register' && (
-                    <StyledInput 
+                    <StyledInput
                         autoComplate="phone"
                         name="phone"
                         placeholder="전화번호"
@@ -61,7 +66,8 @@ const AuthFrom = ({ type, form, onChange, onSubmit, error }) => {
                     />
                 )}
                 {type === 'register' && (
-                    <StyledInput 
+                    <StyledInput
+                        type="date"
                         autoComplate="birth"
                         name="birth"
                         placeholder="생년월일"
@@ -69,7 +75,7 @@ const AuthFrom = ({ type, form, onChange, onSubmit, error }) => {
                         value={form.birth || ''}
                     />
                 )}
-                <StyledInput 
+                <StyledInput
                     autoComplate="id"
                     name="id"
                     placeholder="아이디"
@@ -80,7 +86,7 @@ const AuthFrom = ({ type, form, onChange, onSubmit, error }) => {
                     autoComplate="new-password"
                     name="password"
                     placeholder="비밀번호"
-                    type="password" 
+                    type="password"
                     onChange={onChange}
                     value={form.password || ''}
                 />
@@ -98,11 +104,6 @@ const AuthFrom = ({ type, form, onChange, onSubmit, error }) => {
                 <ButtonWithMarginTop>{text}</ButtonWithMarginTop>
             </form>
             <Footer>
-                {type === 'login' ? (
-                    <Link to="/register">회원가입</Link>
-                ) : (
-                    <Link to="/login">로그인</Link>
-                )}
             </Footer>
         </AuthFromBlock>
     );
