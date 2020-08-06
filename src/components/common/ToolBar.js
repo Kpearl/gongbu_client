@@ -51,7 +51,7 @@ const ToolBar = ({ user, onLogout }) => {
 					<Link to="/" className="logo">Gongbu</Link>
 					{user ? (
 						<div className="right">
-							<UserInfo>{user.id}</UserInfo>
+							<UserInfo>{user.id} 님</UserInfo>
 							<Button onClick={onLogout}>로그아웃</Button>
 						</div>
 					) : (

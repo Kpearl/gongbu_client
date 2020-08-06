@@ -8,10 +8,10 @@ import createRequestSaga, {
 const TEMP_SET_USER = 'TEMP_SET_USER';
 
 const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] = createRequestActionTypes(
-    'CHECK',
+    'auth/CHECK',
 );
 
-const LOGOUT = 'LOGOUT';
+const LOGOUT = 'auth/LOGOUT';
 
 export const tempSetUser = createAction(TEMP_SET_USER, user => user);
 export const check = createAction(CHECK);
