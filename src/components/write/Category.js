@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -14,7 +14,7 @@ const CategoryBlock = styled.div`
     }
 `;
 
-const CategoryForm = styled.form `
+const CategoryForm = styled.form`
     border-radius: 4px;
     overflow: hidden;
     display: flex;
@@ -60,27 +60,64 @@ const CategoryListBlock = styled.div`
     margin-top: 0.5rem;
 `;
 
-const CategoryItem = React.memo(({category}) => <Category>{category}</Category>);
+const CategoryItem = React.memo(({category, onRemove}) => (
+    <Category onClick={() => onRemove(category)}>{category}</Category>
+));
 
-const CategoryList = React.memo(({categorys}) => (
+const CategoryList = React.memo(({categorys, onRemove}) => (
     <CategoryListBlock>
         {categorys.map(category => (
-            <CategoryItem key={category} category={category} />
+            <CategoryItem key={category} category={category} onRemove={onRemove} />
         ))}
     </CategoryListBlock>
 ));
 
 const CategoryBox = () => {
+    const [input, setInput] = useState('');
+    const [localCategorys, setLocalCategorys] = useState([]);
+
+    const insertCategory = useCallback(
+        category => {
+            if(!category) return;
+            if(localCategorys.includes(category)) return;
+            setLocalCategorys([...localCategorys, category]);
+        },
+        [localCategorys],
+    );
+
+    const onRemove = useCallback(
+        category => {
+            setLocalCategorys(localCategorys.filter(c => c !== category));
+        },
+        [localCategorys],
+    );
+
+    const onChange = useCallback(
+        e => {
+        setInput(e.target.value);
+    }, []);
+
+    const onSubmit = useCallback(
+        e => {
+            e.preventDefault();
+            insertCategory(input.trim());
+            setInput('');
+        },
+        [input, insertCategory],
+    );
+
     return (
         <CategoryBlock>
             <h4>카테고리</h4>
-            <CategoryForm>
-                <input placeholder="카테고리를 입력하세요." />
-                <button type="sybmit">추가</button>
+            <CategoryForm onSubmit={onSubmit}>
+                <input placeholder="카테고리를 입력하세요."
+                    value={input}
+                    onChange={onChange} />
+                <button type="submit">추가</button>
             </CategoryForm>
-            <CategoryList categorys={['생활비', '교통비']}></CategoryList>
+            <CategoryList categorys={localCategorys} onRemove={onRemove}></CategoryList>
         </CategoryBlock>
-    )
-}
+    );
+};
 
 export default CategoryBox;
