@@ -5,5 +5,3 @@
 React
 
 Redux-Saga
-
-React-moment
