@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../components/common/Button';
-import ToolBar from '../components/common/ToolBar';
+import Category from '../components/write/Category';
 
 const PostListPage = () => {
-    return(
+    return (
         <>
-        <div>Home</div>
+            <Button to='/editor'>입력</Button>
+            <Button to='/category'>카테고리 추가</Button>
         </>
     )
 };
