@@ -27,8 +27,8 @@ const RegisterForm = ({ history }) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        const {  id, password, passwordConfirm, username, phone, birth  } = form;
-        if([ id, password, passwordConfirm, username, phone, birth ].includes('')) {
+        const {  id, password, passwordConfirm, username, phone, birth, email } = form;
+        if([ id, password, passwordConfirm, username, phone, birth, email ].includes('')) {
             setError('빈 칸을 모두 입력하세요.');
             return;
         }
@@ -38,7 +38,7 @@ const RegisterForm = ({ history }) => {
             dispatch(changeField({form: 'register', key: 'passwordConfirm', value: ''}));
             return;
         }
-        dispatch(register({ id, password, username, phone, birth }));
+        dispatch(register({ id, password, username, phone, birth, email }));
     };
 
     useEffect(() => {

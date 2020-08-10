@@ -2,12 +2,12 @@ import client from './cilent';
 
 //로그인
 export const login = ({ id, password }) => 
-    client.post('/users/login', null, { params:{id: id, pw: password }})
+    client.post('/users/login', null, { params:{ id: id, password: password }})
 
 
 //회원가입
-export const register = ({ id, password, username, phone, birth }) => 
-    client.post('/users/register', null, { params: { id: id, pw: password, name: username, phone: phone, birth: birth }})
+export const register = ({ id, password, username, phone, birth, email }) => 
+    client.post('/users/register', null, { params: { id: id, password: password, name: username, phone: phone, birth: birth, email: email }})
 
 //로그인 상태 확인
 export const check = () => client.get('/users/check');

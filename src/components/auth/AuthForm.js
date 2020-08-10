@@ -67,6 +67,15 @@ const AuthFrom = ({ type, form, onChange, onSubmit, error }) => {
                 )}
                 {type === 'register' && (
                     <StyledInput
+                        autoComplate="email"
+                        name="email"
+                        placeholder="email"
+                        onChange={onChange}
+                        value={form.email || ''}
+                    />
+                )}
+                {type === 'register' && (
+                    <StyledInput
                         type="date"
                         autoComplate="birth"
                         name="birth"
