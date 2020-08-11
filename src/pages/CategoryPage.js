@@ -1,11 +1,11 @@
 import React from 'react';
 import Responsive from '../components/common/Responsive';
-import Category from '../components/write/Category';
+import CategoryContainer from '../containers/write/CategoryContainer';
 
 const CategoryPage = () => {
     return (
         <Responsive>
-            <Category />
+            <CategoryContainer />
         </Responsive>
     );
 };

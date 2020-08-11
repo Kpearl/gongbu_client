@@ -64,7 +64,7 @@ const CategoryItem = React.memo(({category, onRemove}) => (
     <Category onClick={() => onRemove(category)}>{category}</Category>
 ));
 
-const CategoryList = React.memo(({categorys, onRemove}) => (
+const CategoryList = React.memo(({ categorys, onRemove }) => (
     <CategoryListBlock>
         {categorys.map(category => (
             <CategoryItem key={category} category={category} onRemove={onRemove} />
@@ -72,7 +72,7 @@ const CategoryList = React.memo(({categorys, onRemove}) => (
     </CategoryListBlock>
 ));
 
-const CategoryBox = () => {
+const CategoryBox = ( categorys, onChangeCategorys ) => {
     const [input, setInput] = useState('');
     const [localCategorys, setLocalCategorys] = useState([]);
 
@@ -80,16 +80,20 @@ const CategoryBox = () => {
         category => {
             if(!category) return;
             if(localCategorys.includes(category)) return;
-            setLocalCategorys([...localCategorys, category]);
+            const nextCategorys = [...localCategorys, category];
+            setLocalCategorys(nextCategorys);
+            onChangeCategorys(nextCategorys);
         },
-        [localCategorys],
+        [localCategorys, onChangeCategorys],
     );
 
     const onRemove = useCallback(
         category => {
-            setLocalCategorys(localCategorys.filter(c => c !== category));
+            const nextCategorys = localCategorys.filter(c => c !== category);
+            setLocalCategorys(nextCategorys);
+            onChangeCategorys(nextCategorys);
         },
-        [localCategorys],
+        [localCategorys, onChangeCategorys],
     );
 
     const onChange = useCallback(
@@ -106,6 +110,10 @@ const CategoryBox = () => {
         [input, insertCategory],
     );
 
+    useEffect(() => {
+        setLocalCategorys(categorys);
+    }, [categorys]);
+
     return (
         <CategoryBlock>
             <h4>카테고리</h4>
@@ -115,7 +123,7 @@ const CategoryBox = () => {
                     onChange={onChange} />
                 <button type="submit">추가</button>
             </CategoryForm>
-            <CategoryList categorys={localCategorys} onRemove={onRemove}></CategoryList>
+            <CategoryList category={localCategorys} onRemove={onRemove}></CategoryList>
         </CategoryBlock>
     );
 };
