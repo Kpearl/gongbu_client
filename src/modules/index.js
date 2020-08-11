@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     auth,
     loading,
     user,
-    write
+    write,
 });
 
 export function* rootSaga() {

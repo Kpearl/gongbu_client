@@ -7,15 +7,14 @@ const CategoryContainer = () => {
     const dispatch = useDispatch();
     const categorys = useSelector(state => state.write.categorys);
 
-    const onChangeCategorys = nextCategory => {
-        dispatchEvent(
+    const onChangeCategorys = nextCategorys => {
+        dispatch(
             changeField({
                 key: 'categorys',
-                value: nextCategory,
+                value: nextCategorys,
             }),
         );
     };
-
     return <CategoryBox onChangeCategorys={onChangeCategorys} categorys={categorys} />;
 };
 
