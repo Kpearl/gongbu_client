@@ -13,6 +13,7 @@ padding: 0.25rem 1rem;
 color: white;
 outline: none;
 cursor: pointer;
+margin: 1rem;
 
 background: ${palette.gray[8]};
 &:hover {
@@ -21,19 +22,19 @@ background: ${palette.gray[8]};
 `;
 
 const StyledButton = styled.button`
-${buttonStyle}
+  ${buttonStyle}
 `;
 
 const StyledLink = styled(Link)`
-${buttonStyle}
+  ${buttonStyle}
 `;
 
-const Button = props => {
-    return props.to ? (
-        <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
-    ) : (
-            <StyledButton {...props} />
-        );
+const Button = (props) => {
+  return props.to ? (
+    <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
+  ) : (
+    <StyledButton {...props} />
+  );
 };
 
 export default Button;

@@ -12,15 +12,18 @@ import rootReducer, { rootSaga } from './modules';
 import { tempSetUser, check } from './modules/user';
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)),);
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
 
 function loadUser() {
-  try{
+  try {
     const user = localStorage.getItem('user');
-    if(!user) return;
+    if (!user) return;
     store.dispatch(tempSetUser(user));
     store.dispatch(check());
-  } catch(e) {
+  } catch (e) {
     console.log('localStorage is not working');
   }
 }
@@ -34,7 +37,7 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 
 serviceWorker.unregister();

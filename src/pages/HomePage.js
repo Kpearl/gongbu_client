@@ -1,14 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Button from '../components/common/Button';
+import CalendarViwer from '../components/calendar/monthView';
 
 const PostListPage = () => {
-    return (
-        <>
-            <Button to='/editor'>입력</Button>
-            <Button to='/category'>카테고리 추가</Button>
-        </>
-    )
+  return (
+    <>
+      <CalendarViwer />
+      <Button to="/write">입력</Button>
+      <Button to="/category">카테고리 추가</Button>
+    </>
+  );
 };
 
 export default PostListPage;
