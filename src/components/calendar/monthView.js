@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 const PostViewerBlock = styled(Responsive)`
   magin-top: 4rem;
   padding: 2rem;
 `;
 const PostHead = styled.div`
-  border-bottom: 1px solid ${palette.gray[2]};
-  padding-bottom: 3rem;
-  margin-bottom: 3rem;
   h1 {
     font-size: 3rem;
     line-height: 1.5;
@@ -29,40 +29,41 @@ const SubInfo = styled.div`
   }
 `;
 
-const Category = styled.div`
-  margin-top: 0.5rem;
-  .category {
-    display: inline-block;
-    color: ${palette.gray[5]};
-    text-decoration: none;
-    margin-right: 0.5rem;
-    &:hover {
-      color: ${palette.gray[6]};
-    }
-  }
-`;
-
 const PostContent = styled.div`
   font-size: 1.3125rem;
   color: ${palette.gray[8]};
 `;
 
 const PostViewer = () => {
+  const income = { title: '수입 : 0', date: '2020-08-21', color: '#c26565' };
+  const expense = { title: '지출 : 0', date: '2020-08-21', color: '#3282b8' };
+
+  const [selectLocalDate, setSelectLocalDate] = useState(
+    new Date().toLocaleDateString()
+  );
+
+  const dateClick = (arg) => {
+    setSelectLocalDate(arg.dateStr);
+  };
+
   return (
     <PostViewerBlock>
       <PostHead>
-        <h1>Title</h1>
+        <FullCalendar
+          defaultView="dayGridMonth"
+          plugins={[dayGridPlugin, interactionPlugin]}
+          events={[income, expense]}
+          dateClick={dateClick}
+        />
+      </PostHead>
+      <PostContent>
         <SubInfo>
           <span>
-            <b>tester</b>
+            <div>{selectLocalDate}</div>
+            <div>test</div>
           </span>
-          <span>{new Date().toLocaleDateString()}</span>
         </SubInfo>
-        <Category>
-          <div className="category">category</div>
-        </Category>
-      </PostHead>
-      <PostContent />
+      </PostContent>
     </PostViewerBlock>
   );
 };
