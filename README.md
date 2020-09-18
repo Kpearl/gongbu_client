@@ -2,6 +2,9 @@
 공용 가계부 클라이언트
 
 # 환경
-React
+React  
+Redux-Saga  
+fullcalendar
 
-Redux-Saga
+# SiteMap
+![SiteMap](./image/SiteMap.jpg) 
